@@ -1,0 +1,32 @@
+============================= test session starts ==============================
+platform linux -- Python 3.13.12, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 2 items
+
+../tests/test_outputs.py FF                                              [100%]
+
+=================================== FAILURES ===================================
+______________________________ test_report_exists ______________________________
+
+    def test_report_exists():
+>       assert Path("/app/report.json").exists(), "report.json not found"
+E       AssertionError: report.json not found
+E       assert False
+E        +  where False = exists()
+E        +    where exists = PosixPath('/app/report.json').exists
+E        +      where PosixPath('/app/report.json') = Path('/app/report.json')
+
+/tests/test_outputs.py:6: AssertionError
+_____________________________ test_report_nonempty _____________________________
+
+    def test_report_nonempty():
+>       with open("/app/report.json") as f:
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '/app/report.json'
+
+/tests/test_outputs.py:10: FileNotFoundError
+=========================== short test summary info ============================
+FAILED ../tests/test_outputs.py::test_report_exists - AssertionError: report....
+FAILED ../tests/test_outputs.py::test_report_nonempty - FileNotFoundError: [E...
+============================== 2 failed in 0.03s ===============================
